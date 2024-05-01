@@ -89,7 +89,7 @@ We just checked that the Ip address truly changed and set itself to 192.168.10.1
 3. **Create Share Folder:** 
    - Create a 'share' folder for file sharing between the host and VMs.
  <br/>
-<img src="https://imgur.com/ivfXLaw.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/Xmh39O8.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 4. **Install Splunk:** 
