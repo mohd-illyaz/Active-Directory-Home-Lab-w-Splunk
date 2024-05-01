@@ -1,4 +1,4 @@
-# Active-Directory-Home-Lab-w/-Splunk
+# Active Directory Home Lab w/ Splunk
 
 ## Objective
 [Brief Objective - Remove this afterwards]
