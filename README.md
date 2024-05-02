@@ -209,7 +209,7 @@ We will used the path we previously copied that leads to Sysmon files. Use the f
  Rename the file to inputs.conf and change the file type to all types and save. NOTE: Anytime we update our inputs.conf file we must restart Splunk’s Universal Forwarder service.
  Search in search bar “Services”>Run as admin>SplunkFowarder>Double Click It> Log On>Click Local System Account>Apply>OK>Restart Service
  We will get an error pop up but that’s okay. Just start the service again.
- Look for the the steps in the following images:
+ Look for the steps in the following images:
 </div>
 <br/>
 <img src="https://i.imgur.com/CFWymSe.png" height="80%" width="80%" alt=""/>
@@ -217,8 +217,13 @@ We will used the path we previously copied that leads to Sysmon files. Use the f
 <img src="https://i.imgur.com/s9LTO79.png" height="80%" width="80%" alt=""/>
 <br />
 <br />
-
-
-
+<div>
+Now we will want to head over to our Splunk instance again and do the last configurations to our Splunk server by hovering over to settings>Indexes.
+Here we can see all of the indexes that Splunk has to offer. Scroll to the top right corner and click on “New Index”.
+Name our new index “Endpoint” and click ‘Save’.
+Next, we need to enable our Splunk server to receive the data.
+then click on Settings>Forwarding and receiving
+Click on configure receiving & on the top right “New Receiving Port”. Next, the default port will be 9997 like earlier when setting up our forwarder.
+After clicking Search & Reporting. We will want to search ‘index=”endpoint”. We should be getting thousands of events for that filter.
 
 
