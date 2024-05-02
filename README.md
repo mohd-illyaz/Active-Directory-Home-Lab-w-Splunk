@@ -93,7 +93,7 @@ If we attempt it again we shall be able to add a user ‘splunk’ to the vboxus
 <br />
 <br />
      <br/>
-<img src="https://imgur.com/7Hc3rmo.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/LuV2NWt.png" height="80%" width="80%" alt=""/>
 <br />
 <br />
 
