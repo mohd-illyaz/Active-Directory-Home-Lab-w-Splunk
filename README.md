@@ -97,6 +97,32 @@ If we attempt it again we shall be able to add a user ‘splunk’ to the vboxus
 <br />
 <br />
 
+<div>
+Next, we are going to proceed into installing Splunk Enterprise onto our Splunk Server by adding a share folder onto our VM.
+I created a folder where I kept the .deb file of Splunk Enterprise and all files related to the project called ‘AD Project’. Next, let’s reboot our machine by,
+
+sudo reboot
+</div>
+<br/>
+<img src="https://i.imgur.com/fxxW3yR.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Now We will want to create a directory called ‘share’.
+</div>
+<br/>
+<img src="https://i.imgur.com/FOC1RDu.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+We will want to run the following command as shown by adding our ‘AD_Project’ folder in our host system onto the share folder that we just created. We will follow up with that by changing directory into our newly created share folder. Next, let’s run the following command 
+sudo dpkg -i splunk-9.2.0.1-d8ae995bf219-linux-2.6-amd64.deb
+</div>
+<br/>
+<img src="https://i.imgur.com/PP93a8O.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
 
 
 
