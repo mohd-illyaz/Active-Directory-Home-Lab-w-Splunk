@@ -209,6 +209,7 @@ We will used the path we previously copied that leads to Sysmon files. Use the f
  Rename the file to inputs.conf and change the file type to all types and save. NOTE: Anytime we update our inputs.conf file we must restart Splunk’s Universal Forwarder service.
  Search in search bar “Services”>Run as admin>SplunkFowarder>Double Click It> Log On>Click Local System Account>Apply>OK>Restart Service
  We will get an error pop up but that’s okay. Just start the service again.
+ Look for the the steps in the following images:
 </div>
 <br/>
 <img src="https://i.imgur.com/CFWymSe.png" height="80%" width="80%" alt=""/>
