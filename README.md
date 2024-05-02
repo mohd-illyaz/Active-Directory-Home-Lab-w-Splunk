@@ -145,8 +145,77 @@ We will now want to launch our Splunk server! We will want to then put in our cr
 Let’s exit out of being the user ‘splunk’. Change into the bin directory again. We then shall run the following command shown above to make sure every time we boot up Ubuntu server it automatically boots up the Splunk server.
 </div>
 
-
-
+## Configuring Target-PC w/Sysmon & Splunk Universal Forwarder
+<div>
+We will go ahead by starting off by renaming our PC to ‘target-PC’.
+Search ‘PC’ in search bar>properties>rename this PC>restart PC
+Expectedly should have changed to our desired name target-PC.
+We see our current IP is 192.168.10.8 we want to change it to what our lab diagram mentions.
+Open Network & Internet Settings>Change Adapter Options>Right click on properties>double click on ipv4
+Change the following IP address as shown in fig. We have /24 subnet with the DNS server being pointed towards Google’s.
+</div>
+<br/>
+<img src="https://i.imgur.com/OHUlEKv.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<br/>
+<img src="https://i.imgur.com/LgDRvKD.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Let’s go onto our browser and start a private window and let’s pull up our Splunk server and head over to splunk.com to download & install Splunk Universal Forwarder.
+</div>
+<br/>
+<img src="https://i.imgur.com/wqplaa7.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<br/>
+<img src="https://i.imgur.com/G9xKDbs.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Once it finishes downloading, we will want to open the file and check the box to agree to terms and click next.
+We then next create our credentials using the default username ‘admin’ & by checking the random password box and click next
+And Let’s deploy our receiving indexer with the following IP and the default port number 9997. Afterwards click install and wait for it to install.
+</div>
+<br/>
+<img src=".mhttps://i.imgur.com/CwCK8ES.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+We will then proceed to downloading Sysmon.Save the .xml file on the VM.
+Next, we will want to extract the whole file onto our downloads directory.
+</div>
+<br/>
+<img src="https://i.imgur.com/fkguLya.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Now we will want to copy the path of the extracted Sysmon file. This will bring us to our next step by opening up PowerShell by running it as an admin.
+We will used the path we previously copied that leads to Sysmon files. Use the following command to launch Sysmon.
+<br/>
+<img src="https://i.imgur.com/BrXrFDX.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<br/>
+<img src="https://i.imgur.com/SA7JitY.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Next, follow the following path above to locate the ‘inputs.conf’ directory to then proceed with creating a copy in the local directory instead. Our default directory is just a backup we shouldn’t mess with.
+Search up notepad in the search bar and run it as an administrator. We will copy and paste the contents of inputs.conf file into a .txt file.
+We will be sending over the Windows Event Logs pertaining Application, Security, System, and Sysmon operations over to our Splunk Server.
+Next, we will save our notepad .txt file over to our PC via the same path from earlier as shown below.
+Rename the file to inputs.conf and change the file type to all types and save. NOTE: Anytime we update our inputs.conf file we must restart Splunk’s Universal Forwarder service.
+Search in search bar “Services”>Run as admin>SplunkFowarder>Double Click It> Log On>Click Local System Account>Apply>OK>Restart Service
+We will get an error pop up but that’s okay. Just start the service again.
+</div>
+<br/>
+<img src="https://i.imgur.com/CFWymSe.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/V8qYsvY.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/s9LTO79.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
 
 
 
