@@ -225,5 +225,16 @@ Next, we need to enable our Splunk server to receive the data.
 then click on Settings>Forwarding and receiving
 Click on configure receiving & on the top right “New Receiving Port”. Next, the default port will be 9997 like earlier when setting up our forwarder.
 After clicking Search & Reporting. We will want to search ‘index=”endpoint”. We should be getting thousands of events for that filter.
+</div>
+<br/>
+<img src="https://i.imgur.com/YcykC3w.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/bTbdYBC.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/KbbNiY8.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/a9uwDda.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+We have successfully configured Splunk. Remember the inputs.conf file from earlier which had the four windows event log types we wanted to ingest well here they are!
+</div>
 
-
+## Configure Active Directory Server w/Splunk Universal Forwarder & Sysmon
