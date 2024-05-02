@@ -122,6 +122,32 @@ sudo dpkg -i splunk-9.2.0.1-d8ae995bf219-linux-2.6-amd64.deb
 <img src="https://i.imgur.com/PP93a8O.png" height="80%" width="80%" alt=""/>
 <br />
 <br />
+<div>
+Now, we opted out into the cd/opt/splunk directory. We proceed to look into the directory and see the permissions are given to the user splunk. We will now want to act as the user splunk by the command, sudo -u splunk bash
+</div>
+<br/>
+<img src="https://i.imgur.com/6FfTtFF.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+<div>
+Now we will want to change into the bin directory as that folder contains all the binaries that Splunk can use.
+
+./splunk start
+
+We will now want to launch our Splunk server! We will want to then put in our credentials and document them into our text file for future reference.
+</div>
+<br/>
+<img src="https://i.imgur.com/wHkis1L.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Let’s exit out of being the user ‘splunk’. Change into the bin directory again. We then shall run the following command shown above to make sure every time we boot up Ubuntu server it automatically boots up the Splunk server.
+</div>
+
+
+
+
 
 
 
