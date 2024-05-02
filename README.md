@@ -202,13 +202,13 @@ We will used the path we previously copied that leads to Sysmon files. Use the f
 <br />
 <br />
 <div>
-Next, follow the following path above to locate the ‘inputs.conf’ directory to then proceed with creating a copy in the local directory instead. Our default directory is just a backup we shouldn’t mess with.
-Search up notepad in the search bar and run it as an administrator. We will copy and paste the contents of inputs.conf file into a .txt file.
-We will be sending over the Windows Event Logs pertaining Application, Security, System, and Sysmon operations over to our Splunk Server.
-- Next, we will save our notepad .txt file over to our PC via the same path from earlier as shown below.
-- Rename the file to inputs.conf and change the file type to all types and save. NOTE: Anytime we update our inputs.conf file we must restart Splunk’s Universal Forwarder service.
-Search in search bar “Services”>Run as admin>SplunkFowarder>Double Click It> Log On>Click Local System Account>Apply>OK>Restart Service
-- We will get an error pop up but that’s okay. Just start the service again.
+ - Next, follow the following path above to locate the ‘inputs.conf’ directory to then proceed with creating a copy in the local directory instead. Our default directory is just a backup we shouldn’t mess with.
+   Search up notepad in the search bar and run it as an administrator. We will copy and paste the contents of inputs.conf file into a .txt file.
+   We will be sending over the Windows Event Logs pertaining Application, Security, System, and Sysmon operations over to our Splunk Server.
+ - Next, we will save our notepad .txt file over to our PC via the same path from earlier as shown below.
+ - Rename the file to inputs.conf and change the file type to all types and save. NOTE: Anytime we update our inputs.conf file we must restart Splunk’s Universal Forwarder service.
+   Search in search bar “Services”>Run as admin>SplunkFowarder>Double Click It> Log On>Click Local System Account>Apply>OK>Restart Service
+ - We will get an error pop up but that’s okay. Just start the service again.
 </div>
 <br/>
 <img src="https://i.imgur.com/CFWymSe.png" height="80%" width="80%" alt=""/>
