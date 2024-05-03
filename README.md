@@ -565,6 +565,21 @@ Which will specify the search result to only EventID 4625 which will only show t
 <br />
 <br />
 
+If we look at the time we can see that it’s happening in a matter of seconds. A clear indicator of a brute force attack.
+
+Now on to the next peocess;
+Let’s go on now to installing Atomic Red Team to begin testing out different telemetry for our Splunk server. Open powershell using admin privileges.
+
+Set-ExecutionPolicy Bypass CurrentUser
+
+Type ‘y’ right after.
+
+<br/>
+<img src="https://imgur.com/Anc7fCN.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+
 
 
 
