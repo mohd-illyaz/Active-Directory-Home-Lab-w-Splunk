@@ -73,16 +73,16 @@ We just checked that the Ip address truly changed and set itself to 192.168.10.1
 
 
  **Install Splunk Enterprise:** 
-   - Download the .deb version of Splunk Enterprise and install it using dpkg.
+   Download the .deb version of Splunk Enterprise and install it using dpkg.
  <br/>
    <img src="https://imgur.com/ivfXLaw.png" height="80%" width="80%" alt=""/>
 <br />
 <br />
 
 <div>
-  - We are going to go back to our CLI and add our guest add ons for virtual box.
-  - Say ‘Yes’ to installing it. After it’s finished installing click enter
-  - As we attempted to add a user to the vboxuser group. We were hit with an error. We were missing an additional feature
+  We are going to go back to our CLI and add our guest add ons for virtual box.
+  Say ‘Yes’ to installing it. After it’s finished installing click enter
+  As we attempted to add a user to the vboxuser group. We were hit with an error. We were missing an additional feature
 
 use the command-sudo apt-get install virtualbox-guest-utils
 
