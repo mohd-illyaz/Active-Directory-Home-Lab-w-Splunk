@@ -319,3 +319,8 @@ Let’s head over to our Splunk server to see if we began ingesting logs from bo
 <div>
 Success! We have added both our hosts to our Splunk server and should be ready now to begin receiving logs from both hosts as we please. This concludes our configuration portion of the project.
 </div>
+
+# Configuring AD Server to Join Target Machine to Domain Controller
+
+Now we focus on our Target-PC to join our newly created domain!
+then, we shall start by setting a static IP of 192.168.10.7 on our AD server. We reference this by looking our diagram we created.
