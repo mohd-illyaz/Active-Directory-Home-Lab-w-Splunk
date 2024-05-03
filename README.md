@@ -579,6 +579,88 @@ Type ‘y’ right after.
 <br />
 <br />
 
+We shall click on the up arrow and click on Windows Security.
+Click on ‘Virus & threat protection’> Manage Settings> Scroll Down & Click ‘Add or remove exclusion’> Yes> Add an exclusion> Folder> C:\ Drive
+
+<br/>
+<img src="https://imgur.com/yL5xYXE.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+It should look as shown above. Now we will be allowed to install Atomic Red Team! The following github link will allow you to copy and paste the appropriate Powershell command. Scroll down until you see ‘Install Execution Framework and Atomics Folder’ copy the following command:
+
+IEX (IWR ‘https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1’ -UseBasicParsing);
+Install-AtomicRedTeam -getAtomics
+
+Type ‘y’ when prompted to continue installation.
+
+Once, finished installing let’s head over to our C:\ drive and head over to our AtomicsRedTeam folder>atomics
+We should see a ton of TechniqueIDs as shown below. Which reference the MITRE Att&ck Framework.
+<br/>
+<img src="https://imgur.com/OzL67of.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+We can hover right under Persistence and hover right under “Create Account”. It’s labelled as T1136. If we go back to our Atomics directory and scroll looking for it we shall find it!
+<br/>
+<img src="https://imgur.com/1DPGCWp.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+We highlighted there’s three different types of techniques that are eligible to be tested. If we click on our Mitre Att&ck Framework technique we shall one is a local account attack, second being a domain attack, and last being a cloud attack technique. We shall test out the local account attack technique first by running the following command in Powershell:
+
+Invoke-AtomicTest T1136.001
+
+<br/>
+<img src="https://imgur.com/kYFsVm0.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+We shall see that our test technique created telemetry with the user ‘NewLocalUser’ being used. 
+We can now go into Splunk and search specifically for the user ‘NewLocalUser’ even generated.
+<br/>
+<img src="https://imgur.com/5ycBmuB.png" height="80%" width="80%" alt=""/>
+<img src="https://imgur.com/kAtwCmH.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+Now one more;
+We will hover now right under the ‘Execution’ section and look for the attack techniqueID T1059.
+We will hover now right under the ‘Execution’ section and look for “Command and Scripting Interpreter” the attack techniqueID T1059.
+If we go into our Atomics directory and search for it we should we have 9 techniques to choose from.
+<br/>
+<img src="https://imgur.com/lCMC8G0.png" height="80%" width="80%" alt=""/>
+<img src="https://imgur.com/1R9Xt5X.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+If we expand it we can see that there is quite of few script languages we can choose from to test.
+We are going to choose Powershell since we’re already there. Let’s open it back up and run the following command:
+
+Invoke-AtomicTest T1059.001
+
+<br/>
+<img src="https://imgur.com/86dmI3W.png" height="80%" width="80%" alt=""/>
+<img src="https://imgur.com/4Y8lxjy.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+Here is something specific we may search in Splunk by searching up ‘powershell’ and see what kind of telemetry it generates and filtering the time to the ‘Last 15 minutes’. 
+In my case I let it do it’s thing for a while and had only 1 event within the last 60 minutes.
+It was the -exec bypass I was looking for so, I queried for a more specific search
+
+<br/>
+<img src="https://imgur.com/SgYBh82.png" height="80%" width="80%" alt=""/>
+<img src="https://imgur.com/8yUMrqm.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+Now I am able to see the bypass no profile script being implemented now using the query above.
+We can create an alert to detect for this activity in the future since we were having issues detecting it at first.
+
+## This is one reason why using the Mitre Att&ck Framework and as many resource as possible to test your environment’s security posture to increase the defense. Being able to detect as many positive alerts in your environment is key to threat prevention! Real learning is done based off of breaking things!!!
+
+
 
 
 
