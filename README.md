@@ -72,7 +72,7 @@ We just checked that the Ip address truly changed and set itself to 192.168.10.1
 
 
 
- **Install Splunk Enterprise:** 
+## Install Splunk Enterprise:
    Download the .deb version of Splunk Enterprise and install it using dpkg.
  <br/>
    <img src="https://imgur.com/ivfXLaw.png" height="80%" width="80%" alt=""/>
