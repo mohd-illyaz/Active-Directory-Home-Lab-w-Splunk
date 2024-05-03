@@ -39,7 +39,7 @@ After, will start by downloading the VM .ISO files for:
     We will begin to install them with these minimum requirements and have them set them up by default. We will be documenting our credentials in a text document for demo purposes. Once you finished setting up Ubuntu Desktop we shall begin setting up our Splunk Server.
   </div>
 # Configuring our Splunk Sever
-  <p align="center">
+
 Let’s run this command to update and upgrade our repositories: <br/>
 <img src="https://imgur.com/qQFHpm2.png" height="80%" width="80%" alt=""/>
 <br />
