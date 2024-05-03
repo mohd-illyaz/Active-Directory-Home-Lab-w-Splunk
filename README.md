@@ -414,3 +414,164 @@ Once we are in, we have successfully configured our AD server and created two us
 
 # Generating Attack Telemetry to Splunk Server w/ Atomic Red Team tests based off Mitre Att&ck Framework
 
+Now we use our Kali Linux machine to launch a brute force attack onto our vulnerable machine to generate telemetry in Splunk. After, setup and install Atomic Red Team and use it to run tests to also, generate telemetry via Splunk.
+Note: Now would be a good time to shut down both Target-Pc and ACCDC01 downgrade machines to 2gb ram if we are running on 16gb ram to be able to run all the necessary VMs at once.
+We will want to turn on our Kali machine and set a static IP of 192.168.10.250 per our diagram in the first part of our project.
+Right click on the top right where the connections icon is at and click on ‘Edit Connections’.
+We will want to select the first profile which is ‘Wired Connection 1’.
+We will want to click on the section of of the settings like before on our Windows machine on IPv4 settings.
+
+<br/>
+<img src="https://imgur.com/KMTDoMa.png" height="80%" width="80%" alt=""/>
+<img src="https://imgur.com/9MBtNOU.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+We will run the following commands to simultaneously update and upgrade our machines repositories and saying yes to all prompts.
+
+sudo apt-get update && sudo apt-get upgrade -y
+
+It shall take a while dependent on connection speed. Once, it’s done we can begin launching our attack by creating a new directory.
+
+mkdir ad-project
+
+All the files we create and use will be put under this directory for organizational purposes. The tool we will be using next is crowbar.
+
+sudo apt-get install -y crowbar
+
+Now that we have it installed we will want to install a popular word list called ‘rockyou.’ If we change our directory:
+
+cd /usr/share/wordlists/
+
+Afterwards lets see what files are in the wordlists directory by running;
+
+ls
+
+Afterwards we will want to unzip the file ‘rockyou.txt.gz’ via:
+
+sudo gunzip rockyou.txt.gz
+
+If we run the ls command again in the ‘wordlists’ directory we shall see that the ‘rockyou.txt.gz’ file was unzipped to ‘rockyou.txt’.
+
+Next, we will want to copy the rockyou.txt file onto our ad-project directory
+
+cp rockyou.txt ~/Desktop/ad-project/
+
+Click enter and should have copied it we will want to change into our ‘ad-project directory.
+
+cd ~/Desktop/ad-project
+
+We shall then proceed to see what’s inside the directory by:
+
+ls -lh
+
+<br/>
+<img src="https://imgur.com/1LsXJ98.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+We don’t want to use all the passwords in our rockyou.txt file as it would take too long and for demo purposes we will want to create our own password list for crowbar to use instead. Instead, we will use the first 20 lines by running the following command:
+
+head -n 20 rockyou.txt
+
+If we hit enter we shall see the first 20 lines
+
+<br/>
+<img src= "https://imgur.com/zKaZUd5.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+As we can see these are the first 20 most command end users use to sign in.
+Next, we are going to output the first 20 commands into a file called passwords.txt via the following command:
+
+head -n 20 rockyou.txt > passwords.txt
+
+We can open it up by concatenate the file by running the following command:
+
+cat passwords.txt
+
+<br/>
+<img src= "https://imgur.com/sXfxJ8r.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+Now we will have it target a specific password by using the text editor nano using the following command:
+
+nano password.txt
+
+We shall scroll down and adding our TARGET-PC password and save it.
+If we cat passwords.txt again we should be able to see the newly added password in the file and we should be good to go!
+
+<br/>
+<img src= "https://imgur.com/iAH6yOX.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+Next, we will want to enable RDP in our TARGET-PC machine.
+
+On our windows TARGET machine we will begin to enable RDP by:
+
+Search in search bar “PC”> Click Properties>Advanced system settings> Login via administrator credentials
+Click on top right on Remote and click on “Allow remote connections to this computer”. Afterwards, click on “Select Users”
+
+<br/>
+<img src= "https://imgur.com/MM22XwT.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+Note: Have our Windows Server 22 running. So our users and domain may appear.
+
+We will want to add our users Jenny and Terry smith by typing ‘jsmith’ & ‘tsmith’ and clicking check names it should automatically add the rest of their info if it was indeed setup correctly. It should look like how it’s shown below. Next, click OK. Click on ‘Apply’. Then click OK to close it out and we have now enabled RDP.
+
+<br/>
+<img src= "https://imgur.com/oJK5Mxf.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+Lets go back to our Linux machine to begin launching our brute force attack using the crowbar tool. We may use crowbar -h to help explain the command abbreviations. Next, run the following command:
+
+crowbar -b rdp -u tsmith -C passwords.txt -s 192.168.10.100/32
+
+-b ; target service to attack
+
+-u; static username to target
+
+-C; the specific password file wordlist to use
+
+-s; specific server to target
+
+/32 to only target that specific IP only since it’s in the /32 subnet.
+
+It should have successfully been able to brute force as shown below
+
+<br/>
+<img src= "https://imgur.com/FzsIAmj.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+We now have the necessary telemetry to go over to Splunk and inspect the data generated.
+We will be using our Splunk server IP followed by the default port 8000 to login in via our credentials we should have saved. After, we have logged in successfully let’s click on ‘Search & Reporting’. In the search bar type:
+
+index=endpoint tsmith
+
+If hover over to ‘EventCode’ and see the EventIDs generated we shall see 4 created. If we were to search up what EventID 4625 means; An account failed to logon. Which means there were 20 attempts to logon. If you remember it was from our crowbar tool attempting the 20 passwords before nailing our actual password at the end! We can specify even further;
+
+index=endpoint tsmith EventCode=4625
+
+Which will specify the search result to only EventID 4625 which will only show the 20 events.
+
+<br/>
+<img src="https://imgur.com/cfHM0Pd.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+
