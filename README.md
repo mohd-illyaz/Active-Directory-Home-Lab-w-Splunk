@@ -238,3 +238,83 @@ We have successfully configured Splunk. Remember the inputs.conf file from earli
 </div>
 
 ## Configure Active Directory Server w/Splunk Universal Forwarder & Sysmon
+<div>
+First, we will want to rename our Active Directory Server PC to ‘ADDCC01’.
+Search bar search “PC”>Click on Properties>Rename this PC>’ADDCC01′ We shall proceed to restart the PC to apply the changes now we may proceed to installing Splunk & Sysmon onto our AD Server.
+It will be the same process like our Target machine the only difference is that the Server Static IP will be different. We will want to change our static IP to 192.168.10.7
+Our current IP is 192.168.10.9
+Again Open Network & Internet Settings>Change Adapter Options>Right click on properties>double click on ipv4
+</div>
+<br/>
+<img src="https://i.imgur.com/1Rr235k.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Now that we have set our proper network connectivity. It is time to install Splunk Universal Forwarder and Sysmon onto our Active Directory Server.
+We will want to go over to splunk.com and login in with our credentials. Go over to free trials & downloads and download Splunk Universal Forwarder for Windows 64 bit.
+Once the download is complete let’s go over to the file and open the Splunk file to install the Universal forward onto our server.
+Check the box to agree to terms with the default on premises Splunk Enterprise instance checked off as well. You may go ahead and click next.
+Let’s create a ‘admin’ username. While, also checking for “Generate Random Password.”
+We may also skip the deployment server by clicking next.
+We will want to send all of our logs over to Splunk via the Receiving Indexer specifying our Splunk server IP and default port number 9997 shown, click next and Install
+</div>
+<br/>
+<img src="https://i.imgur.com/3DUIJMi.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Now we will go and install Sysmon. Sysmon will be installed
+Next we will save the inputs.conf file from the shown github repo. It’s already in raw file all we got to do is right click and save as ‘inputs.conf.’ Let’s put it into our Downloads folder and extract all of it there as well.
+<br/>
+<img src="https://i.imgur.com/sYaDeeX.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/wcXSNtV.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Let’s copy the file path and head on over to Powershell and run it as an administrator.
+</div>
+<br/>
+<img src="https://i.imgur.com/6i2TchS.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Now we will change directories into the file path where our Sysmon folder was extracted. Followed with the following command as shown to run Sysmon in conjunction with sysmonconfig.xml file.
+Next, click agree to begin running Sysmon on our Active Directory server.
+Now, here’s a very important step we must instruct our Splunk forwarder on what to send over to our Splunk server.
+</div>
+<br/>
+<img src="https://i.imgur.com/QbSQgKX.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+We will want to follow the file path shown above to locate the inputs.conf file in the default folder. We wouldn’t to edit in there because the default folder is considered a backup in case anything goes wrong.
+We will want to put the inputs.conf file into the local directory instead. We will need administrative privileges to do so.
+Open up Notepad and run it as an administrator. Copy the below Github repo’s .xml file code and paste it into notepad. It should look like this down below
+And save it into the local directory.
+</div>
+<br/>
+<img src="https://i.imgur.com/hi32ZGL.png" height="80%" width="80%" alt=""/>
+<img src="https://i.imgur.com/daKo0Bh.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Again this inputs.conf file is instructing our Splunk forwarder to push events corresponding with Application, Security, System, and Sysmon operational to our Splunk server. The index is also being pointed towards “Endpoint” it will not receive the events under the Index “Endpoint” since we had already done so earlier we don’t need to again.
+NOTE: Due to updating our inputs.conf file we need to restart Splunk’s Universal Forwarder Service in the “Services” settings.
+Search in search bar “Services”>Run as Administrator> Splunk Forwarder (Type S)>Click on Restart Service
+And When you double click Splunk Forwarder and you see a NTSERVICE account it might inhibit log ingestions because of some of the permissions so instead we will want to log on via the local account instead by checking it instead.
+Next, Apply the changes and click OK. It will prompt you to restart the service to apply the changes.
+</div>
+<br/>
+<img src="https://i.imgur.com/MlrQpmc.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Let’s head over to our Splunk server to see if we began ingesting logs from both hosts. Remember, we had configured our Server earlier so we do not need to do it again.
+</div>
+<br/>
+<img src="https://i.imgur.com/b9s8K3T.png" height="80%" width="80%" alt=""/>
+<br />
+<br />
+<div>
+Success! We have added both our hosts to our Splunk server and should be ready now to begin receiving logs from both hosts as we please. This concludes our configuration portion of the project.
+</div>
